@@ -9,6 +9,7 @@ def home(request):
     preco_maximo = request.GET.get('preco_maximo')
     cidade = request.GET.get('cidade')
     tipo = request.GET.getlist('tipo')
+    cidades = Cidade.objects.all()
     if preco_minimo or preco_maximo or cidade or tipo:
 
         if not preco_minimo:
@@ -24,8 +25,6 @@ def home(request):
     else:
         imoveis = Imovel.objects.all()
        
-    imoveis = Imovel.objects.all()
-    cidades = Cidade.objects.all()
     return render(request, 'home.html', {'imoveis': imoveis, 'cidades': cidades})
 
 def imovel(request, id):
